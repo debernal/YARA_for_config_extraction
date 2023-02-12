@@ -5,10 +5,10 @@
 
 define_function(print_int_data)
 {
-  YR_SCAN_CONTEXT* context = yr_scan_context();
+  YR_SCAN_CONTEXT* context = scan_context();
   YR_MEMORY_BLOCK* block;
   YR_MEMORY_BLOCK_ITERATOR* iterator = context->iterator;
-  YR_OBJECT* module = yr_module();
+  YR_OBJECT* module = module();
 
   int64_t offset_0 = integer_argument(1);
   int64_t size = integer_argument(2);
@@ -31,16 +31,16 @@ define_function(print_int_data)
   for(int i=0; i< size; i++)
     index += sprintf(&str[index], "%d ", data[i]);
   
-  yr_set_string(str,module,"str");
+  set_string(str,module,"str");
   return_string(str);
 }
 
 define_function(print_string_data)
 {
-  YR_SCAN_CONTEXT* context = yr_scan_context();
+  YR_SCAN_CONTEXT* context = scan_context();
   YR_MEMORY_BLOCK* block;
   YR_MEMORY_BLOCK_ITERATOR* iterator = context->iterator;
-  YR_OBJECT* module = yr_module();
+  YR_OBJECT* module = module();
 
   int64_t offset_0 = integer_argument(1);
   int64_t size = integer_argument(2);
@@ -63,7 +63,7 @@ define_function(print_string_data)
   for(int i=0; i< size; i++)
     index += snprintf(&str[index], size-index+1, "%c", data[i]);
 
-  yr_set_string(str,module,"str");
+  set_string(str,module,"str");
   return_string(str);
 }
 
